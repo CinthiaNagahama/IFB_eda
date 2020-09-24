@@ -1,0 +1,18 @@
+
+------------------------ Lista de Exercícios - EDA ----------------------
+
+1. O que significa alocação sequencial de memória para um conjunto de elementos?
+	-> Na alocação sequencial, os elementos são armazenados na sequência física de memória. Como a localização e o tamanho de cada elemento é conhecida, a busca de um elemento específico é mais rápida;
+
+2. O que significa alocação estática de memória para um conjunto de elementos?
+	-> Alocação estática de memória é a memória reservada por um programa quando este é compilado. Uma desvantagem nesse tipo de alocação são os vetores, que precisam de um tamanho pré-estabelecido, pois no caso da necessidade de um espaço maior ou menor que o estabelecido, não é possível mudar a quantidade de memória alocada.
+
+3. Qual a diferença entre alocação sequencial e alocação encadeada?
+	-> Na alocação sequencial, os elementos são armazenados na sequência física de memória, enquanto na alocação encadeada não.
+
+4. Quais as vantagens de se utilizar alocação encadeada para um conjunto de elementos? Quais as possíveis desvantagens?
+	-> A quantidade de memória utilizada é proporcional a quantidade de elementos não havendo desperdício ou falta de memória durante a execução do programa. Pode ser considerada uma desvantagem a necessidade de sempre se necessitar o endereço do próximo elemento, já que a memória alocada não necessariamente está na ordem física de memória.
+
+5. Qual a diferença entre alocação estática e alocação dinâmica?
+	-> A alocação estática reserva memória no momento em que o programa é compilado e a quantidade de memória não pode ser mudada durante a execução deste; a alocação dinâmica, por sua vez, reserva memória quando o dado necessário é passado durante a execução do programa e a quantidade de memória reservada é equivalente ao tamanho dos dados recebidos.
+

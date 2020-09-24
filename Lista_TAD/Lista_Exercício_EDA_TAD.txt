@@ -1,0 +1,6 @@
+
+------------------------------ Lista TAD --------------------------------
+
+1. Um TAD é um metodo de programação que tem como objetivo reduzir a informação necessária para a criação de um algoritmo através da abstração das variáveis pertencentes a uma entidade e das operações próprias desses dados.
+
+2. A abstração de informações através do TAD permitiu a melhor compreensão dos algoritmos e maior facilidade de programação, além de facilitar o uso do software pelo usuário não programador que não precisa se preocupar com o raciocínio por trás das operações. Além disso, o uso de TADs facilita a reutilização e manutenção de códigos prontos.
