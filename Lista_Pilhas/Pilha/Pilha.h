@@ -72,3 +72,40 @@ Pilha* copia(Pilha* p);
 // Questão 15 -> Considere uma pilha P vazia e uma fila F nao vazia. Utilizando apenas as funções da 
 // 				 fila e da pilha, escreva uma função que inverta a ordem dos elementos da fila.
 Fila* inverte_fila(Fila* f);
+
+// Questão 17 -> Acumula n valores da sequencia de Fibonacci em uma pilha
+Pilha* fibonacci(int n);
+
+// Questão 18 -> Escreva um algoritmo que leia um número indeterminado de valores inteiros. 
+// 				 O valor 0 finaliza a entrada de dados. 
+//				 Se o numero for par, então incluí-lo na FILA PAR;
+//				 caso contrario, incluí-lo na FILA ÍMPAR. 
+// 				 Após o término da entrada de dados, retirar um elemento de cada fila alternadamente 
+// 				 (iniciando-se pela FILA ÍMPAR) até que ambas as filas estejam vazias.
+// 				 Se o elemento retirado de uma das filas for um valor positivo, entao incluí-lo em uma 
+//				 PILHA; caso contrário, remover um elemento da PILHA.
+//				 Finalmente, escrever o conteúdo da pilha.
+void balburdia();
+
+// Questão 22 -> Faça uma função que receba uma pilha como argumento e retorne o valor armazenado em 
+//				 seu topo. A função deve remover também esse elemento.
+/* Feita anteriormente (slide) */
+
+// Questão 23 -> Retorna o número de elementos da pilha que possuem valor ímpar.
+int impar(Pilha* p);
+
+// Questão 24 -> Retorna o número de elementos da pilha que possuem valor par.
+int par(Pilha* p);
+
+// Questão 25 -> Faça uma função que receba uma pilha como argumento e retorne o valor armazenado em 
+//				 seu topo. A função deve remover também esse elemento.
+/* Feita anteriormente (slide) */ 
+
+// Questão 26 -> A conversao de números inteiros, na base 10, para outras bases numéricas se dá 
+// 				 através de sucessivas divisões de um dado valor n pelo valor da base na qual se 
+// 				 queira converter. Faça um programa para obter a conversão numérica, de acordo com a
+// 				 opção do usuário, utilizando a uma pilha:
+// 					(a) Decimal para Binario
+// 					(b) Decimal para Octal
+// 					(c) Decimal para Hexadecimal
+void conversao(int n);

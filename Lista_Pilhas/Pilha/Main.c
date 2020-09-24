@@ -22,7 +22,7 @@ int main(void){
 	*/
 	
 	Push(p, -9);
-	Push(p, -1);
+	Push(p, -2);
 	Push(p, 1);
 	Push(p, 3);
 	Push(p, 5);
@@ -149,6 +149,7 @@ int main(void){
 	*/
 	
 	// Questão 15
+	/*
 	Fila* f = cria_fila();
 	
 	insere_fila(f, 1);
@@ -159,6 +160,27 @@ int main(void){
 	
 	f = inverte_fila(f);
 	imprime_fila(f);
+	*/
+	
+	// Questão 17
+	/*
+	int i, n = 15;
+	Pilha* q = fibonacci(n);
+	for(i = 0; i < n; i++) printf("%i ", Pop(q));
+	*/
+	
+	// Questão 18
+	/*
+	balburdia();
+	*/
+	
+	// Questão 23 e 24
+	/*
+	printf("Pares: %i | Ímpares: %i", par(p), impar(p));
+	*/
+	
+	// Questão 26
+	conversao(298);
 	
 	Libera(p);
 	return 0;

@@ -406,16 +406,272 @@ Pilha* copia(Pilha* p){
 // 				 fila e da pilha, escreva uma função que inverta a ordem dos elementos da fila.
 Fila* inverte_fila(Fila* f){
 	Pilha* p = Cria_Pilha();
-	Lista* q = f->ini;
-	
-	for(; q != NULL; q = q->prox){
+	int i, tam = f->qtd;
+
+	for(i = 0; i < tam; i++){
 		Push(p, retira_fila(f));
 	}
-	
-	q = p->topo;
-	for(; q != NULL; q = q->prox){
+
+	for(i = 0; i < tam; i++){
 		insere_fila(f, Pop(p));
 	}
-	
 	return f;
+}
+
+// Questão 17 -> Acumula n valores da sequencia de Fibonacci em uma pilha
+Pilha* fibonacci(int n){
+	if(n == 0){
+		printf("Fibonacci começa de 1\n");
+		return NULL;
+	}
+	Pilha* p = Cria_Pilha();
+	int num, numA = 1, numB = 0, i = 0, fibo[n];
+	
+	while(i < n){
+	    Push(p, numA);
+	    num = numA + numB;
+	    numB = numA;
+	    numA = num;
+	    i++;
+	}
+	
+	return p;
+}
+
+// Questão 18 -> Escreva um algoritmo que leia um número indeterminado de valores inteiros. 
+// 				 O valor 0 finaliza a entrada de dados. 
+//				 Se o numero for par, então incluí-lo na FILA PAR;
+//				 caso contrario, incluí-lo na FILA ÍMPAR. 
+// 				 Após o término da entrada de dados, retirar um elemento de cada fila alternadamente 
+// 				 (iniciando-se pela FILA ÍMPAR) até que ambas as filas estejam vazias.
+// 				 Se o elemento retirado de uma das filas for um valor positivo, entao incluí-lo em uma 
+//				 PILHA; caso contrário, remover um elemento da PILHA.
+//				 Finalmente, escrever o conteúdo da pilha.
+void balburdia(){
+	int v;
+	printf("Insira um valor. (Para parar digite 0) ");
+	scanf("%i", &v);
+	if(v == 0) return;
+	
+	Fila* par = cria_fila(), *impar = cria_fila();
+	
+	while(v != 0){
+		if(v % 2 == 0){
+			insere_fila(par, v);
+		}
+		else{
+			insere_fila(impar, v);
+		}
+		printf("Insira um valor. (Para parar digite 0) ");
+		scanf("%i", &v);
+	}
+	
+	printf("\n----------------------- Pilhas -------------------\n");
+	printf("Par:\n");
+	imprime_fila(par);
+	printf("Ímpar:\n");
+	imprime_fila(impar);
+
+	int i, tam = par->qtd + impar->qtd, values[tam];
+	for(i = 0; i < tam; i++){
+		// Se par estiver vazia, completa com os elementos de impar
+		if(impar->ini == NULL){
+			int j;
+			for(j = 0; j < (tam - i); j++){
+				int v = retira_fila(par);
+				values[i] = v;
+			}
+			break;
+		}
+		// Se impar estiver vazia, completa com os elementos de par
+		else if(par->ini == NULL){
+			int j;
+			for(j = 0; j < (tam - i); j++){
+				int v = retira_fila(impar);
+				values[i] = v;
+			}
+			break;
+		}
+		// Se ambas tiverem elementos
+		else if(i % 2 == 0){
+			int v = retira_fila(impar);
+			values[i] = v;
+		}
+		else{
+			int v = retira_fila(par);
+			values[i] = v;
+		}
+	}
+	
+	if(values[0] < 0){
+		printf("Impossível retirar de uma pilha vazia");
+		return ;
+	}
+	
+	Pilha* p = Cria_Pilha();
+	for(i = 0; i < tam; i++){
+		if(values[i] < 0){
+			Pop(p);
+		}
+		else Push(p, values[i]);
+	}
+	
+	if(p->topo == NULL){
+		printf("Pilha Vazia");
+		return ;
+	}
+	
+	printf("\n----------------------- Valores Finais -------------------\n");
+	Lista* q;
+	for(q = p->topo; q != NULL; q = q->prox){
+		printf("%i ", q->info);
+	}
+}
+
+// Questão 22 -> Faça uma função que receba uma pilha como argumento e retorne o valor armazenado em 
+//				 seu topo. A função deve remover também esse elemento.
+/* Feita anteriormente (slide) 
+int Pop(Pilha* p){
+	Lista* t;
+	int v;
+	if(Vazia(p)){
+		printf("\nA pilha está vazia.\n");
+		exit(1);
+	}
+	// Pega o valor no topo da pilha
+	t = p->topo;
+	v = t->info;
+	
+	// Passa o topo para o próximo elemento
+	p->topo = t->prox;
+	
+	// Libera o topo original e retorna o valor
+	free(t);
+	return v;
+}
+*/
+
+// Questão 23 -> Retorna o número de elementos da pilha que possuem valor ímpar.
+int impar(Pilha* p){
+	int impar = 0;
+	Lista* q;
+	for(q = p->topo; q != NULL; q = q->prox){
+		if(q->info % 2 != 0){
+			impar++;
+		}
+	}
+	return impar;
+}
+
+// Questão 24 -> Retorna o número de elementos da pilha que possuem valor par.
+int par(Pilha* p){
+	int par = 0;
+	Lista* q;
+	for(q = p->topo; q != NULL; q = q->prox){
+		if(q->info % 2 == 0){
+			par++;
+		}
+	}
+	return par;
+}
+
+// Questão 25 -> Faça uma função que receba uma pilha como argumento e retorne o valor armazenado em 
+//				 seu topo. A função deve remover também esse elemento.
+/* Feita anteriormente (slide) 
+int Pop(Pilha* p){
+	Lista* t;
+	int v;
+	if(Vazia(p)){
+		printf("\nA pilha está vazia.\n");
+		exit(1);
+	}
+	// Pega o valor no topo da pilha
+	t = p->topo;
+	v = t->info;
+	
+	// Passa o topo para o próximo elemento
+	p->topo = t->prox;
+	
+	// Libera o topo original e retorna o valor
+	free(t);
+	return v;
+}
+*/
+
+// Questão 26 -> A conversao de números inteiros, na base 10, para outras bases numéricas se dá 
+// 				 através de sucessivas divisões de um dado valor n pelo valor da base na qual se 
+// 				 queira converter. Faça um programa para obter a conversão numérica, de acordo com a
+// 				 opção do usuário, utilizando a uma pilha:
+// 					(a) Decimal para Binario
+// 					(b) Decimal para Octal
+// 					(c) Decimal para Hexadecimal
+void conversao(int n){
+	char tipo;
+	
+	printf("Digite o tipo de conversao:");
+	printf("\n\t(a) Decimal para Binario \n\t(b) Decimal para Octal \n\t(c) Decimal para Hexadecimal\n\t -> ");
+	scanf("%c", &tipo);
+	
+	Pilha* p = Cria_Pilha();
+	int aux = n;
+	Lista* q;
+	switch(tipo){
+		case 'a': 
+			while(aux > 0){
+				Push(p, (aux % 2));
+				aux /= 2;
+			}
+			printf("%i em binario e ", n);
+			for(q = p->topo; q != NULL; q = q->prox){
+				printf("%i", q->info);
+			}
+			break;
+		case 'b': 
+			while(aux > 0){
+				Push(p, (aux % 8));
+				aux /= 8;
+			}
+			printf("%i em octal e ", n);
+			for(q = p->topo; q != NULL; q = q->prox){
+				printf("%i", q->info);
+			}
+			break;
+		case 'c':
+			while(aux > 0){
+				int resto = aux % 16;
+				if(resto < 9){
+					Push(p, resto);
+				}
+				switch (resto){
+					case 10:
+						Push(p, (int)'A');
+						break;
+					case 11:
+						Push(p, (int)'B');
+						break;
+					case 12:
+						Push(p, (int)'C');
+						break;
+					case 13:
+						Push(p, (int)'D');
+						break;
+					case 14:
+						Push(p, (int)'E');
+						break;
+					case 15:
+						Push(p, (int)'F');
+						break;
+				}
+				aux /= 16;
+			}
+			printf("%i em hexadecimal e ", n);
+			for(q = p->topo; q != NULL; q = q->prox){
+				if(q->info < 10) printf("%i", q->info);
+				else printf("%c", (char)q->info);
+			}
+			break;
+		default:
+			printf("\nTipo de conversao desconhecida");
+			break;
+	}
 }
